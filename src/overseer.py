@@ -15,6 +15,6 @@ class Overseer(discord.Client):
 
         if message.content[0] == '~':
             await log_command(message)
-            await execute_command(message)
+            await execute_command(self, message)
 
-        await level(message, message.author)
+        await level(self, message, message.author)
