@@ -1,6 +1,5 @@
-import discord
-import re
 from sqlitedict import SqliteDict
+import config
 
 async def level(self, message, user):
     with SqliteDict('./db/levels.sqlite', autocommit=True) as level_db:
@@ -8,7 +7,7 @@ async def level(self, message, user):
             level_db[user.id] = 0
         level_db[user.id] += 1
         if level_db[user.id] % 10 == 0:
-            await self.get_channel(837692972161957898).send("woah, " + user.mention + ", you're now level " + str(int(level_db[user.id] / 10)) + ". crazy shit.")
+            await self.get_channel(config.level_channel).send("woah, " + user.mention + ", you're now level " + str(int(level_db[user.id] / 10)) + ". crazy shit.")
 
 def get_level(user):
     with SqliteDict('./db/levels.sqlite', autocommit=True) as level_db:
