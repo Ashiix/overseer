@@ -7,7 +7,8 @@ commands = {
 "about":"show info about overseer",
 "hello":"say hello",
 "level":"get your current level",
-"leaderboard":"show the server level leaderboard"
+"leaderboard":"show the server level leaderboard",
+"levelnotif":"toggle levelup notifications"
 }
 
 async def execute_command(self, message):
@@ -51,6 +52,13 @@ async def execute_command(self, message):
 
     elif command == "leaderboard":
         await leaderboard(self, message, message.author)
+
+    elif command == "ice":
+        await message.channel.send("https://cdn.discordapp.com/attachments/750181456420274256/838277499480965150/image0.png")
+
+    elif command == "levelnotif":
+        await toggle_notif(self, message.author)
+        await message.channel.send("toggled levelup notifications for user " + message.author.mention)
 
     else:
         await message.reply("that is not a valid command.")

@@ -7,7 +7,10 @@ async def level(self, message, user):
             level_db[user.id] = 0
         level_db[user.id] += 1
         if level_db[user.id] % 10 == 0:
-            await self.get_channel(config.level_channel).send("woah, " + user.mention + ", you're now level " + str(int(level_db[user.id] / 10)) + ". crazy shit.")
+            if level_db[str(user.id)+"_notif"] == 0:
+                await self.get_channel(config.level_channel).send("woah, " + user.name + ", you're now level " + str(int(level_db[user.id] / 10)) + ". crazy shit.")
+            else:
+                await self.get_channel(config.level_channel).send("woah, " + user.mention + ", you're now level " + str(int(level_db[user.id] / 10)) + ". crazy shit.")
 
 def get_level(user):
     with SqliteDict('./db/levels.sqlite', autocommit=True) as level_db:
@@ -32,3 +35,10 @@ async def leaderboard(self, message, user):
             leaderboard += user.name + "#" + user.discriminator + ": " + str(parse_level(sorted_levels.get(sorted_keys[len(level_db) - i - 1]))) + "\n"
         leaderboard += "...\n" + message.author.name + "#" + message.author.discriminator + ": " + str(get_level(message.author)) + "\n```"
         await message.channel.send((leaderboard))
+
+async def toggle_notif(self, user):
+    with SqliteDict('./db/levels.sqlite', autocommit=True) as level_db:
+        if level_db.get(str(user.id)+"_notif") == 0:
+            level_db[str(user.id)+"_notif"] = 1
+        else:
+            level_db[str(user.id)+"_notif"] = 0
