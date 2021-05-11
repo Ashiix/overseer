@@ -48,10 +48,10 @@ async def execute_command(self, message):
         await message.channel.send("hello, " + message.author.mention + ".")
 
     elif command == "level":
-        await message.channel.send(message.author.mention + " is level " + str(get_level(message.author)) + ".")
+        await message.channel.send(message.author.mention + " is level " + str(get_level(message.author)) + ". they require " + str(24 - (get_level_xp(message.author) % config.level_curve)) + " more messages for the next level.")
 
     elif command == "leaderboard":
-        await leaderboard(self, message, message.author)
+        await leaderboard(self, message)
 
     elif command == "ice":
         await message.channel.send("https://cdn.discordapp.com/attachments/750181456420274256/838277499480965150/image0.png")
