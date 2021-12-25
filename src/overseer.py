@@ -20,8 +20,3 @@ class Overseer(discord.Client):
 
         if message.guild.id == config.home_server:
             await level(self, message, message.author)
-
-    # TODO: figure out why this this isn't being called
-    async def on_member_join(self,  member):
-        print("joined.")
-        await self.get_channel(config.welcome_channel).send("welcome, " + member.mention)
