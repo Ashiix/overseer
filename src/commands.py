@@ -1,6 +1,7 @@
 import discord
 from src.extensions.level import *
 import config
+import re
 
 commands = {
 "help":"show this message",
@@ -8,11 +9,14 @@ commands = {
 "hello":"say hello",
 "level":"get your current level",
 "leaderboard":"show the server level leaderboard",
-"levelnotif":"toggle levelup notifications"
+"levelnotif":"toggle levelup notifications",
+"hug":"give the specified value a hug"
 }
 
 async def execute_command(self, message):
-    command = message.content[1:]
+    command = message.content.split()[0][1:]
+
+    args = message.content.split()[1:]
 
     if command == "help":
         help_embed = discord.Embed (
@@ -59,6 +63,12 @@ async def execute_command(self, message):
     elif command == "levelnotif":
         await toggle_notif(self, message.author)
         await message.channel.send("toggled levelup notifications for user " + message.author.mention)
+
+    elif command == "hug":
+        try:
+            await message.channel.send(message.author.mention + " gives " + args[0] + " a hug.")
+        except:
+            await message.reply("please specific the target of the hug.")
 
     else:
         await message.reply("that is not a valid command.")

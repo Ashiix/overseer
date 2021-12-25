@@ -6,12 +6,12 @@ import config
 
 class Overseer(discord.Client):
     async def on_ready(self):
-        await self.change_presence(status=discord.Status.online, activity=discord.Game("with drifters."))
+        await self.change_presence(status=discord.Status.online, activity=discord.Game("in the Champlain admissions office."))
         print("overseer ready.")
         print("---------------\n")
 
     async def on_message(self, message):
-        if message.content == "" or message.author == self.user:
+        if message.content == "" or message.author == self.user or message.author.id in config.ignored_users:
             return
 
         if message.content[0] == config.prefix:

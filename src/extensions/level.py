@@ -39,7 +39,7 @@ async def leaderboard(self, message):
 
 async def toggle_notif(self, user):
     with SqliteDict('./db/notif.sqlite', autocommit=True) as notif_db:
-        if notif_db[str(user.id)+"_level"] == 0:
+        if notif_db.get(str(user.id)+"_level") == None or notif_db[str(user.id)+"_level"] == 0:
             notif_db[str(user.id)+"_level"] = 1
         else:
             notif_db[str(user.id)+"_level"] = 0
