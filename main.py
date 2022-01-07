@@ -1,4 +1,4 @@
-#!?usr/bin/env python3
+#!/usr/bin/env python3
 
 # overseer
 # An open-source and self-hosted multipurpose Discord bot
