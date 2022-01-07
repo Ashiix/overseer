@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-/usr/bin/python /home/ash/overseer/main.py
+/usr/bin/python main.py

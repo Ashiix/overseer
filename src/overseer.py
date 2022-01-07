@@ -6,7 +6,7 @@ import config
 
 class Overseer(discord.Client):
     async def on_ready(self):
-        await self.change_presence(status=discord.Status.online, activity=discord.Game("in the Champlain admissions office."))
+        await self.change_presence(status=discord.Status.online, activity=discord.Game("in the overseer's office."))
         print("overseer ready.")
         print("---------------\n")
 
