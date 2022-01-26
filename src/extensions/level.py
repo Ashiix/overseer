@@ -21,7 +21,7 @@ def get_level(user):
 
 def get_level_xp(user):
     with SqliteDict('./db/level.sqlite', autocommit=True) as level_db:
-        return level_db[user.id]
+        return level_db[user]
 
 async def leaderboard(self, message):
     with SqliteDict('./db/level.sqlite', autocommit=True) as level_db:

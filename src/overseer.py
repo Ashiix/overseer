@@ -1,7 +1,6 @@
 import discord
 from src.extensions.log import *
-from src.extensions.level import *
-# import src.commands
+from src.extensions.level import level
 import config
 
 class Overseer(discord.Bot):
@@ -10,6 +9,6 @@ class Overseer(discord.Bot):
         print("overseer ready.")
         print("---------------\n")
 
-    async def on_message(self, message):
-        if message.guild.id == config.home_server:
-            await level(self, message, message.author)
+    # async def on_message(self, message):
+    #     if message.guild.id == config.home_server:
+    #         await level(self, message, message.author)
