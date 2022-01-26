@@ -5,28 +5,35 @@ from src.extensions.level import *
 import config
 import re
 
+
 class Commands(commands.Cog):
     def __init__(self, overseer):
         self.overseer = overseer
 
-    @slash_command(guild_ids=[config.home_server], name="about", description="return information about overseer.")
+    @slash_command(
+        guild_ids=[config.home_server],
+        name="about",
+        description="return information about overseer.",
+    )
     async def about(self, ctx):
-        await ctx.respond(embed=
-                discord.Embed(
+        await ctx.respond(
+            embed=discord.Embed(
                 title="about",
                 color=0x000000,
-                description = "**overseer** is an open-source and self-hosted multipurpose bot."
+                description="**overseer** is an open-source and self-hosted multipurpose bot.",
             )
             .set_author(
                 name="Ashiix#6225",
                 url="https://ashiix.dev",
-                icon_url="https://ashiix.dev/files/img/moon.png"
+                icon_url="https://ashiix.dev/files/img/moon.png",
             )
             .set_thumbnail(url="https://ashiix.dev/files/img/eclipse.png")
             .set_footer(text="overseer")
         )
 
-    @slash_command(guild_ids=[config.home_server], name="hello", description="say hello.")
+    @slash_command(
+        guild_ids=[config.home_server], name="hello", description="say hello."
+    )
     async def hello(self, ctx):
         await ctx.respond(f"hi, {ctx.author.nick}.")
 
